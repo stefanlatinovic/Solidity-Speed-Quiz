@@ -7,5 +7,6 @@ contract IsNBitSet {
         // 000....0001 with n = 0 returns true
         // 000....0001 with n = 1 returns false
         // 000....0010 with n = 1 returns true
+        return (x & (bytes32(uint256(1)) << n)) != 0;
     }
 }

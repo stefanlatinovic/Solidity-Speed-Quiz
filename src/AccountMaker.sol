@@ -11,7 +11,7 @@ contract Account2 {
     function withdraw() external {
         require(msg.sender == owner, "Not owner");
         (bool ok, ) = owner.call{value: address(this).balance}("");
-        require(ok);
+        require(ok, "Call failed");
     }
 }
 
@@ -20,5 +20,10 @@ contract AccountMaker {
         // use create2 to create an account with the owner address
         // the salt should be the owner address
         // the value sent to them should be msg.value
+        Account2 account = new Account2{
+            salt: bytes32(bytes20(owner)),
+            value: msg.value
+        }(owner);
+        return address(account);
     }
 }

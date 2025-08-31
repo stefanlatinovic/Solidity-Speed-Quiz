@@ -12,5 +12,7 @@ contract RationalFunction {
         // f(4) = 133
         // f(5) = 125
 
+        require(x > 1, "x must be greater than 1");
+        return (1 * 100000) / ((1 * 1000) - ((1 * 1000) / x) - 1);
     }
 }

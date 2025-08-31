@@ -20,5 +20,10 @@ contract ReadStruct {
         // in reversed order, i.e. x is y and y is x
         // do not redeclare the struct in this contract or 
         // reference it in ViewContract
+        (bool ok, bytes memory data) = a.staticcall(
+            abi.encodeWithSignature("s()")
+        );
+        require(ok, "Call failed");
+        (y, x) = abi.decode(data, (uint256, uint256));
     }
 }

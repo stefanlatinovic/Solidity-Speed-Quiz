@@ -7,8 +7,19 @@ contract GetEther {
     // write any code you like inside this contract, but only this contract
     // get the Ether from the HasEther contract. You may not modify the test
     
+    address private immutable originalAddress;
+
+    constructor() {
+        originalAddress = address(this);
+    }
+
     function getEther(HasEther hasEther) external {
         //...
+        hasEther.action(address(this), "");
+    }
+    
+    fallback() external {
+        selfdestruct(payable(originalAddress));
     }
 }
 

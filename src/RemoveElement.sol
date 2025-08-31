@@ -14,5 +14,8 @@ contract RemoveElement {
         // the new array should have a length of arr.length - 1
         // use swap-and-pop to remove the item
 
+        uint256[] storage _arr = arr;
+        _arr[index] = _arr[_arr.length - 1];
+        _arr.pop();
     }
 }
